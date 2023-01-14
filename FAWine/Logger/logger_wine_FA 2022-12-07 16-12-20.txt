@@ -1,0 +1,19 @@
+Firefly Algorithm
+
+Number of selected features 1.iter:  2  from  13
+Number of selected features 2.iter:  2  from  13
+Number of selected features 3.iter:  5  from  13
+Number of selected features 4.iter:  5  from  13
+Number of selected features 5.iter:  4  from  13
+
+Time:  14.82251262664795  s
+
+List of f1 score:  [0.856898656898657, 0.8872894486929576, 0.8878765274225633, 0.9713000642535876, 0.9431972789115646]
+Overall f1_score:  0.9093123952358659
+Standard Deviation is:  0.04167100435983955
+
+List of possible accuracy:  [0.8611111111111112, 0.8888888888888888, 0.8888888888888888, 0.9714285714285714, 0.9428571428571428]
+Overall Accuracy:  0.9106349206349206
+Standard Deviation is:  0.0403299568184942
+
+weighted - za svaku klasu posebno i onda prosjek, populacija - 10

@@ -1,0 +1,17 @@
+not Modified ABC Algorithm
+
+Number of selected features 1.iter:  5  from  13
+Number of selected features 2.iter:  6  from  13
+Number of selected features 3.iter:  6  from  13
+Number of selected features 4.iter:  9  from  13
+Number of selected features 5.iter:  7  from  13
+
+Time:  2.4987611770629883  s
+
+List of f1 score:  [0.7943409247757074, 0.9723691945914168, 0.9147465437788019, 1.0, 0.9426379247351113]
+Overall f1_score:  0.9248189175762075
+Standard Deviation is:  0.07121334191558111
+
+List of possible accuracy:  [0.8055555555555556, 0.9722222222222222, 0.9166666666666666, 1.0, 0.9428571428571428]
+Overall Accuracy:  0.9274603174603173
+Standard Deviation is:  0.06705217336624376

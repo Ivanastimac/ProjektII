@@ -1,0 +1,17 @@
+Flower Pollination Algorithm
+
+Number of selected features 1.iter:  14  from  30
+Number of selected features 2.iter:  15  from  30
+Number of selected features 3.iter:  13  from  30
+Number of selected features 4.iter:  16  from  30
+Number of selected features 5.iter:  13  from  30
+
+Time:  9.6179518699646  s
+
+List of f1 score:  [0.9301207564365459, 0.9208642750438418, 0.9737469960380176, 0.956244993396696, 0.9823008849557522]
+Overall f1_score:  0.9526555811741707
+Standard Deviation is:  0.0238959459691058
+
+List of possible accuracy: [0.9298245614035088, 0.9210526315789473, 0.9736842105263158, 0.956140350877193, 0.9823008849557522]
+Overall Accuracy:  0.9526005278683435
+Standard Deviation is:  0.023887978738978403

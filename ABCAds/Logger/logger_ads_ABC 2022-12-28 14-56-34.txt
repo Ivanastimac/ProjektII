@@ -1,0 +1,17 @@
+ABC Algorithm
+
+Number of selected features 1.iter:  1240  from  1558
+Number of selected features 2.iter:  1132  from  1558
+Number of selected features 3.iter:  1194  from  1558
+Number of selected features 4.iter:  1228  from  1558
+Number of selected features 5.iter:  1381  from  1558
+
+Time:  8576.33480668068  s
+
+List of f1 score:  [0.9687330879919914, 0.9538409606710908, 0.9817073170731707, 0.9496774019478402, 0.8976448288374209]
+Overall f1_score:  0.9503207193043028
+Standard Deviation is:  0.02867643364568401
+
+List of possible accuracy: [0.9679878048780488, 0.9542682926829268, 0.9817073170731707, 0.948170731707317, 0.9099236641221374]
+Overall Accuracy:  0.9524115620927203
+Standard Deviation is:  0.02419716580090781

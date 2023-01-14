@@ -1,0 +1,17 @@
+Firefly Algorithm
+
+Number of selected features 1.iter:  3  from  13
+Number of selected features 2.iter:  5  from  13
+Number of selected features 3.iter:  6  from  13
+Number of selected features 4.iter:  3  from  13
+Number of selected features 5.iter:  6  from  13
+
+Time:  51.88400650024414  s
+
+List of f1 score:  [0.8206704728443861, 0.8872514619883042, 0.9174426780538835, 0.9433004506150287, 0.9715570786035554]
+Overall f1_score:  0.9080444284210316
+Standard Deviation is:  0.05182996526430402
+
+List of possible accuracy:  [0.8333333333333334, 0.8888888888888888, 0.9166666666666666, 0.9428571428571428, 0.9714285714285714]
+Overall Accuracy:  0.9106349206349206
+Standard Deviation is:  0.047368653850398686
