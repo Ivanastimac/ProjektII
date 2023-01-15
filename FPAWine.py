@@ -9,6 +9,8 @@ import sys
 sys.path.append('C:\\Users\\ivana\\Documents\\Faks\\5. godina\\III semestar\\Projekt II\\Kod\\Ivana')
 work_dir = 'C:\\Users\\ivana\\Documents\\Faks\\5. godina\\III semestar\\Projekt II\\Kod\\Ivana\\FPAWine\\Logger\\'
 
+import pyRAPL
+
 from niapy.algorithms.basic import FlowerPollinationAlgorithm
 from niapy.task import Task
 from niapy.problems import Problem
@@ -19,9 +21,9 @@ from datetime import datetime
 import time
 
 from sklearn.model_selection import cross_val_score
-from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import ConfusionMatrixDisplay, f1_score
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import ConfusionMatrixDisplay, f1_score, make_scorer, roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 
 
@@ -38,13 +40,16 @@ class FeatureSelection(Problem):
         num_selected = selected.sum()
         if num_selected == 0:
             return 1.0
-        # točnost
-        accuracy = cross_val_score(SVC(), self.X_train[:, selected], self.y_train, cv=2, n_jobs=-1).mean()
-        score = 1 - accuracy
+        f1 = make_scorer(f1_score, average='weighted')
+        fitness = cross_val_score(DecisionTreeClassifier(), self.X_train[:, selected], self.y_train, cv=2, n_jobs=-1, scoring=f1).mean()
+        score = 1 - fitness
         num_features = self.X_train.shape[1]
         # minimizacija
         return self.alpha * score + (1 - self.alpha) * (num_selected / num_features)
-    
+  
+pyRAPL.setup()
+meter1 = pyRAPL.Measurement('bar')
+meter2 = pyRAPL.Measurement('bar')
         
 from sklearn.datasets import load_wine
 dataset = load_wine()
@@ -61,12 +66,14 @@ clf = RandomForestClassifier(n_estimators=10, random_state=42)
 old_stdout = sys.stdout
 log_file = open(str(work_dir + 'logger_wine_FPA ' + datetime.now().strftime('%Y-%m-%d %H-%M-%S') + '.txt'), 'w')
 sys.stdout = log_file
-print('Flower Pollination Algorithm')
+print('Flower Pollination Algorithm (f1 score for fitness function)')
 print()
 
 lst_accu_stratified = []
 lst_f1score_stratified = []
-time_log = 0
+lst_auc_roc = []
+#time_log_fs = 0
+#time_log_clf = 0
 for i, (train_index, test_index) in enumerate(skf.split(x, y)):
     x_train_fold, x_test_fold = x[train_index], x[test_index]
     y_train_fold, y_test_fold = y[train_index], y[test_index]
@@ -75,9 +82,11 @@ for i, (train_index, test_index) in enumerate(skf.split(x, y)):
     task = Task(problem, max_iters=5)
     algorithm = FlowerPollinationAlgorithm()
     
-    beginning = time.time()
+    meter1.begin()
+    #beginning_fs = time.time()
     best_features, best_fitness = algorithm.run(task)
-    end = time.time()
+    #end_fs = time.time()
+    meter1.end()
     
     selected = best_features > 0.5
 
@@ -86,15 +95,26 @@ for i, (train_index, test_index) in enumerate(skf.split(x, y)):
     X_train_fold_fs = x_train_fold[:, selected]
     X_test_fold_fs = x_test_fold[:, selected]
     
+    meter2.begin()
+    #beginning_clf = time.time()
     clf.fit(X_train_fold_fs,y_train_fold)
+    #end_clf = time.time()
+    meter2.end()
+    
     lst_accu_stratified.append(clf.score(X_test_fold_fs,y_test_fold))
     lst_f1score_stratified.append(f1_score(y_test_fold, clf.predict(X_test_fold_fs), average="weighted"))
-    time_log += (end - beginning)
+    lst_auc_roc.append(roc_auc_score(y_test_fold, clf.predict_proba(X_test_fold_fs), multi_class='ovr'))
+    #time_log_fs += (end_fs - beginning_fs)
+    #time_log_clf += (end_clf - beginning_clf)
     ConfusionMatrixDisplay.from_estimator(clf, X_test_fold_fs, y_test_fold)
-    plt.savefig('C:\\Users\\ivana\\Documents\\Faks\\5. godina\\III semestar\\Projekt II\\Kod\\Ivana\\FPAWine\\Matrix\\default\\FPAWine' + str(i) +'.png')
+    plt.savefig('C:\\Users\\ivana\\Documents\\Faks\\5. godina\\III semestar\\Projekt II\\Kod\\Ivana\\FPAWine\\Matrix\\f1\\FPAWine' + str(i) +'.png')
+    print("\nIteracija " + str(i) + " fs-a \n" + str(meter1.result) + "\n")
+    print("\nIteracija " + str(i) + " clf-a \n" + str(meter2.result) + "\n")
 
-print('\nTime: ', str(time_log), ' s')
-print()
+#print('\nTime for fs: ', str(time_log_fs), ' s')
+#print()
+#print('\nTime for clf: ', str(time_log_clf), ' s')
+#print()
 print('List of f1 score: ', lst_f1score_stratified)
 print('Overall f1_score: ', np.mean(lst_f1score_stratified))
 print('Standard Deviation is: ', np.std(lst_f1score_stratified))
@@ -102,6 +122,10 @@ print()
 print('List of possible accuracy: ', lst_accu_stratified)
 print('Overall Accuracy: ', np.mean(lst_accu_stratified))
 print('Standard Deviation is: ', np.std(lst_accu_stratified))
+print()
+print('List of possible auc_roc: ', lst_auc_roc)
+print('Overall auc_roc: ', np.mean(lst_auc_roc))
+print('Standard Deviation is: ', np.std(lst_auc_roc))
 
 sys.stdout = old_stdout
 log_file.close()

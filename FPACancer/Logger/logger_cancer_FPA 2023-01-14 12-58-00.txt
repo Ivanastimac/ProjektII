@@ -1,0 +1,3 @@
+Flower Pollination Algorithm (f1 score for fitness function)
+
+Number of selected features 1.iter:  15  from  30

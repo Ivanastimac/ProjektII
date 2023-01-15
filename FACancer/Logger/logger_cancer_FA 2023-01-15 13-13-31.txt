@@ -1,0 +1,21 @@
+Firefly Algorithm (f1 score for fitness function)
+
+Number of selected features 1.iter:  11  from  30
+Number of selected features 2.iter:  9  from  30
+Number of selected features 3.iter:  10  from  30
+Number of selected features 4.iter:  16  from  30
+Number of selected features 5.iter:  12  from  30
+
+Time:  37.007089614868164  s
+
+List of f1 score:  [0.9122807017543859, 0.902171654886776, 0.9476097712345062, 0.9649122807017544, 0.9560376111683127]
+Overall f1_score:  0.9366024039491471
+Standard Deviation is:  0.024808709013574785
+
+List of possible accuracy: [0.9122807017543859, 0.9035087719298246, 0.9473684210526315, 0.9649122807017544, 0.9557522123893806]
+Overall Accuracy:  0.9367644775655954
+Standard Deviation is:  0.024374879478320326
+
+List of possible auc_roc:  [0.9764166393711103, 0.9711758925646905, 0.9940476190476191, 0.9940476190476191, 0.9906103286384976]
+Overall auc_roc:  0.9852596197339073
+Standard Deviation is:  0.009587884253900935

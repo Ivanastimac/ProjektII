@@ -1,0 +1,17 @@
+Flower Pollination Algorithm (f1 score for fitness function)
+
+Number of selected features 1.iter:  12  from  30
+Number of selected features 2.iter:  12  from  30
+Number of selected features 3.iter:  14  from  30
+Number of selected features 4.iter:  16  from  30
+Number of selected features 5.iter:  16  from  30
+
+Time:  3.9350035190582275  s
+
+List of f1 score:  [0.9298245614035088, 0.9118455861876914, 0.9737469960380176, 0.9560273762928301, 0.9733842231976362]
+Overall f1_score:  0.9489657486239368
+Standard Deviation is:  0.024513384983470117
+
+List of possible accuracy: [0.9298245614035088, 0.9122807017543859, 0.9736842105263158, 0.956140350877193, 0.9734513274336283]
+Overall Accuracy:  0.9490762303990063
+Standard Deviation is:  0.02438908578390307
